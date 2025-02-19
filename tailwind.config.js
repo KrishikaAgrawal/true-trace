@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}", // Ensure this is correct
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+        libre: ["Libre Baskerville", "serif"],
+      },
+    },
   },
   plugins: [],
 };
