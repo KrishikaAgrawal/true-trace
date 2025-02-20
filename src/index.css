@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
-body {
+.text-poppins {
   font-family: "Poppins", sans-serif !important;
+  /* font-family: "Libre Baskerville", serif !important; */
+}
+.text-libre {
+  font-family: "Libre Baskerville", serif !important;
   /* font-family: "Libre Baskerville", serif !important; */
 }

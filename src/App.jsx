@@ -6,6 +6,10 @@ function App() {
     <>
       <Header />
       <Home />
+      <h1 className="text-libre text-3xl font-semibold ">
+        Hello, this is Krishika
+      </h1>
+      <h1 className="text-poppins ">Hello, this is Krishika</h1>
     </>
   );
 }
