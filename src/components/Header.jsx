@@ -1,4 +1,5 @@
 // import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BiBell, BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
 import { RiDiscountPercentFill } from "react-icons/ri";
@@ -9,16 +10,17 @@ const Header = () => {
     <nav>
       {/* logo */}
       <div className="flex justify-between items-center w-full bg-white py-5 shadow-xl px-8">
-        {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer">
-          {/* <p className="bg-[#003d29] text-white w-10 h-10 flex justify-center items-center rounded-full text-xl lg:text-3xl">
+        <NavLink to="/">
+          {/* Logo */}
+          <div className="flex items-center gap-2 cursor-pointer">
+            {/* <p className="bg-[#003d29] text-white w-10 h-10 flex justify-center items-center rounded-full text-xl lg:text-3xl">
             T
           </p> */}
-          <p className="text-xl lg:text-3xl font-semibold text-[#003d29]">
-            TrueTrace.
-          </p>
-        </div>
-
+            <p className="text-xl lg:text-3xl font-semibold text-[#003d29]">
+              TrueTrace.
+            </p>
+          </div>
+        </NavLink>
         {/* search */}
         <div className="flex items-center p-3 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2 ">
           <label htmlFor="designer" className="flex items-center">
@@ -34,16 +36,16 @@ const Header = () => {
 
         {/* User Button Stack */}
         <div className="gap-4 hidden lg:flex">
-          <div className="bg-[#c6fcea] text-[#003d29]  w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
-            {/* <NavLink to="/Wishlist"> */}
-            <BiHeart size={20} />
-            {/* </NavLink> */}
-          </div>
-          <div className="bg-[#c6fcea] text-[#003d29] w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
-            {/* <NavLink to="/Notification"> */}
-            <BiBell size={20} />
-            {/* </NavLink> */}
-          </div>
+          <NavLink to="/Wishlist">
+            <div className="bg-[#c6fcea] text-[#003d29]  w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
+              <BiHeart size={20} />
+            </div>
+          </NavLink>
+          <NavLink to="/Notification">
+            <div className="bg-[#c6fcea] text-[#003d29] w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
+              <BiBell size={20} />
+            </div>
+          </NavLink>
           <div className="bg-[#c6fcea] text-[#003d29] w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
             {/* <NavLink to="/SpecialOffer"> */}
             <RiDiscountPercentFill size={20} />
