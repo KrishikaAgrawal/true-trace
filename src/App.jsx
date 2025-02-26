@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Home from "./pages/Home/Home";
 // import Notification from "./pages/Notification/Notification.jsx";
 import Wishlist from "./pages/Wishlist/Wishlist.jsx";
+import CardDescription from "./pages/Home/CardDescription";
 function App() {
   return (
     <>
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/Wishlist" element={<Wishlist />}></Route>
+          <Route path="/CardDescription" element={<CardDescription />}></Route>
           {/* <Route path="/Notification" element={<Notification />}></Route> */}
         </Routes>
       </BrowserRouter>
