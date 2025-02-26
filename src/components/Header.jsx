@@ -16,7 +16,7 @@ const Header = () => {
             {/* <p className="bg-[#003d29] text-white w-10 h-10 flex justify-center items-center rounded-full text-xl lg:text-3xl">
             T
           </p> */}
-            <p className="text-xl lg:text-3xl font-semibold text-[#003d29]">
+            <p className="text-xl lg:text-3xl font-bold text-[#003d29]">
               TrueTrace.
             </p>
           </div>
