@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
 import Home from "./pages/Home/Home";
-import Notification from "./pages/Notification/Notification";
-import Wishlist from "./pages/Wishlist/Wishlist";
+import Notification from "./pages/Notification/Notification.jsx";
+import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 function App() {
   return (
     <>
