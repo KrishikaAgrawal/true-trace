@@ -5,7 +5,7 @@ const CardDescription = () => {
   const item = location.state || {};
 
   return (
-    <div className="w-full p-5 lg:p-24">
+    <div className="w-full p-5 lg:p-24 lg:pt-14">
       <div className="flex items-center flex-col md:flex-row bg-[#e5fcf4] rounded-2xl">
         {/* Image Section */}
         <div className="lg:p-10 p-5 flex overflow-hidden">

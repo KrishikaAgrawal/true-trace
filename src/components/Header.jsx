@@ -7,9 +7,9 @@ import { RiDiscountPercentFill } from "react-icons/ri";
 import avatar from "../assets/header/avatar.png";
 const Header = () => {
   return (
-    <nav>
+    <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-xl">
       {/* logo */}
-      <div className="flex justify-between items-center w-full bg-white py-5 shadow-xl px-8">
+      <div className="flex justify-between items-center w-full bg-white py-3  px-8">
         <NavLink to="/">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer">
@@ -22,7 +22,7 @@ const Header = () => {
           </div>
         </NavLink>
         {/* search */}
-        <div className="flex items-center p-3 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2 ">
+        <div className="flex items-center p-3 py-2 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2 ">
           <label htmlFor="designer" className="flex items-center">
             <LuSearch className="lg:mr-4 mr-2  text-[#003d29] " />
           </label>

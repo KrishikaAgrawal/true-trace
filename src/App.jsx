@@ -10,12 +10,17 @@ function App() {
     <>
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/Wishlist" element={<Wishlist />}></Route>
-          <Route path="/CardDescription" element={<CardDescription />}></Route>
-          {/* <Route path="/Notification" element={<Notification />}></Route> */}
-        </Routes>
+        <div className="pt-16">
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/Wishlist" element={<Wishlist />}></Route>
+            <Route
+              path="/CardDescription"
+              element={<CardDescription />}
+            ></Route>
+            {/* <Route path="/Notification" element={<Notification />}></Route> */}
+          </Routes>
+        </div>
       </BrowserRouter>
     </>
   );
