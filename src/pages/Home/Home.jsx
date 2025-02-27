@@ -444,7 +444,7 @@ const Home = () => {
   return (
     <>
       <HeroSection />
-      <div className="w-full p-10 grid lg:grid-cols-4 md:grid-cols-3 gap-6">
+      <div className="bg-white w-full p-10 grid lg:grid-cols-4 md:grid-cols-3 gap-6">
         {Data.map((item, index) => (
           <div key={index} className="flex flex-col ">
             <div

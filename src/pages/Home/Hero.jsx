@@ -4,7 +4,11 @@ const Hero = () => {
   return (
     <div className="relative w-full h-[200px] lg:h-[500px] overflow-hidden">
       {/* Hero Image with Blur */}
-      <img src={heroImage} alt="Hero" className="w-full h-full object-cover" />
+      <img
+        src={heroImage}
+        alt="Hero"
+        className=" w-full h-[200px] lg:h-[500px] -z-10 object-cover fixed"
+      />
 
       {/* Dark Overlay for Better Contrast */}
       {/* <div className="absolute inset-0 bg-black bg-opacity-50"></div> */}

@@ -1,4 +1,3 @@
-// import { NavLink } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { BiBell, BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
