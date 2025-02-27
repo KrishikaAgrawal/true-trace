@@ -15,10 +15,13 @@ const Hero = () => {
           {" "}
           Experience a New Level of Wellness With Our Website
         </h1>
-        <p className="mt-2 text-sm font-light lg:text-lg lg:w-1/2">
+        <p className="mt-2 text-xs font-light lg:text-lg lg:w-1/2">
           Your health, your way! TrueTrace empowers you with real-time product
           health insights, ensuring a safer and healthier lifestyle.
         </p>
+        <button className="border border-white px-2 mt-2 lg:mt-0 py-1 lg:px-5 lg:py-2 text-xs lg:text-[16px] rounded-lg hover:bg-emerald-50 font-light hover:font-medium cursor-pointer hover:text-emerald-900">
+          Learn more
+        </button>
       </div>
     </div>
   );
