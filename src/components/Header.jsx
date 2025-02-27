@@ -2,9 +2,13 @@ import { NavLink } from "react-router-dom";
 import { BiBell, BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
 import { RiDiscountPercentFill } from "react-icons/ri";
+// import { useSearch } from "../context/SearchContext";
+import { useContext } from "react";
+import { SearchContext } from "../context/SearchContext";
 
 import avatar from "../assets/header/avatar.png";
 const Header = () => {
+  const { searchQuery, setSearchQuery } = useContext(SearchContext);
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-xl">
       {/* logo */}
@@ -21,14 +25,16 @@ const Header = () => {
           </div>
         </NavLink>
         {/* search */}
-        <div className="flex items-center p-3 py-2 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2 ">
+        <div className="flex items-center p-3 py-2 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2">
           <label htmlFor="designer" className="flex items-center">
-            <LuSearch className="lg:mr-4 mr-2  text-[#003d29] " />
+            <LuSearch className="lg:mr-4 mr-2 text-[#003d29]" />
           </label>
           <input
             type="text"
             id="designer"
             placeholder="Search"
+            value={searchQuery} // Bind input value
+            onChange={(e) => setSearchQuery(e.target.value)} // Update search query
             className="focus:outline-none w-full font-semibold bg-[#FCFCFC]"
           />
         </div>
@@ -59,10 +65,10 @@ const Header = () => {
               {/* </NavLink> */}
             </div>
             <div className="hidden lg:flex flex-col ">
+              <p className="text-sm font-semibold text-nowrap">User</p>
               <p className="text-xs font-semibold text-[#A0A2A2] text-nowrap">
-                Mumbai, Maharashtra
+                New Delhi, Delhi
               </p>
-              <p className="text-sm font-semibold text-nowrap">Krishika</p>
             </div>
           </div>
         </div>
