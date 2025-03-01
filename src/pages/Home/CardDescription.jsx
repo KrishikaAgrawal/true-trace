@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import BarChart from "./BarChart.jsx";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -82,6 +83,7 @@ const CardDescription = () => {
           </div>
         </div>
       </div>
+      <BarChart />
     </div>
   );
 };
