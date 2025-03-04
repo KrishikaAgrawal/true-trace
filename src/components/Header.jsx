@@ -11,7 +11,6 @@ import BarcodeScanner from "./BarcodeScanner";
 
 const Header = () => {
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
-  const [barcode, setBarcode] = useState("");
   const [isScanning, setIsScanning] = useState(false); // Control scanner visibility
 
   return (
@@ -28,13 +27,13 @@ const Header = () => {
 
         {/* Search Bar */}
         <div className="flex items-center p-3 py-2 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2 relative">
-          <label htmlFor="designer" className="flex items-center">
+          <label htmlFor="search" className="flex items-center">
             <LuSearch className="lg:mr-4 mr-2 text-[#003d29]" />
           </label>
           <input
             type="text"
-            id="designer"
-            placeholder="Search"
+            id="search"
+            placeholder="Search by name or barcode..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="focus:outline-none w-full font-semibold bg-[#FCFCFC]"
@@ -53,8 +52,7 @@ const Header = () => {
           <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white p-4 shadow-lg rounded-lg z-50">
             <BarcodeScanner
               onDetected={(code) => {
-                setBarcode(code);
-                setSearchQuery(code); // Set barcode as search query
+                setSearchQuery(code); // Set detected barcode as search query
                 setIsScanning(false); // Close scanner after detection
               }}
             />

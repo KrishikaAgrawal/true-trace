@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { SearchContext } from "../../context/SearchContext"; // ✅ Import Context Correctly
+import { SearchContext } from "../../context/SearchContext"; // Import Search Context
 import HeroSection from "./Hero";
 import Data from "./Data";
 
 const Home = () => {
-  const { searchQuery } = useContext(SearchContext); // ✅ Use useContext instead of useSearch
+  const { searchQuery } = useContext(SearchContext); // Get search query
 
-  // Filter items based on search query (case-insensitive)
-  const filteredItems = Data.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  // Filter items based on name OR barcode (case-insensitive)
+  const filteredItems = Data.filter(
+    (item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.barcode.toLowerCase().includes(searchQuery.toLowerCase()) // ✅ Search by barcode
   );
 
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ const Home = () => {
                 <h2 className="text-poppins text-gray-800 text-xl font-semibold">
                   {item.name}
                 </h2>
+                <p className="text-gray-600 text-sm">Barcode: {item.barcode}</p>
                 <div className="flex items-start gap-4">
                   <img
                     src={item.nutriScore}
