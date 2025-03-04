@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import BarChart from "./BarChart.jsx";
 import DoughnutChart from "./DoughnutChart.jsx";
 import GaugeChart from "./GaugeChart.jsx";
+// import LineChart from "./LineChart.jsx";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -21,8 +22,8 @@ const CardDescription = () => {
   };
 
   return (
-    <div className="w-full p-5 lg:p-24 lg:pt-14">
-      <div className="flex items-center flex-col md:flex-row bg-[#e5fcf4] rounded-2xl">
+    <div className="w-full p-5 lg:p-24 lg:pt-14 ">
+      <div className="flex items-center flex-col mb-10 md:flex-row bg-[#e5fcf4] rounded-2xl">
         {/* Image Section */}
         {item.img && (
           <div className="lg:p-10 p-5 flex overflow-hidden">
@@ -85,9 +86,18 @@ const CardDescription = () => {
           </div>
         </div>
       </div>
-      <BarChart barcode={item.barcode?.split(" ")[0]} />
-      <DoughnutChart barcode={item.barcode?.split(" ")[0]} />
-      <GaugeChart barcode={item.barcode?.split(" ")[0]} />
+      <div className="flex items-center justify-center bg-[#d6f8ec] rounded-2xl mb-10 p-5 h-[450px] md:p-20">
+        <BarChart barcode={item.barcode?.split(" ")[0]} />
+      </div>
+      <div className="grid md:grid-cols-2 items-center flex-col mb-10 gap-10 md:flex-row overflow-hidden">
+        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
+          <DoughnutChart barcode={item.barcode?.split(" ")[0]} />
+        </div>
+        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
+          <GaugeChart barcode={item.barcode?.split(" ")[0]} />
+        </div>
+      </div>
+      {/* <LineChart barcode={item.barcode?.split(" ")[0]} /> */}
     </div>
   );
 };
