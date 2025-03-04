@@ -33,7 +33,7 @@ const Header = () => {
           <input
             type="text"
             id="search"
-            placeholder="Search by name or barcode..."
+            placeholder="Search by name or barcode"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="focus:outline-none w-full font-semibold bg-[#FCFCFC]"

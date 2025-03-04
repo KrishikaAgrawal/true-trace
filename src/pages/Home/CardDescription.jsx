@@ -83,7 +83,7 @@ const CardDescription = () => {
           </div>
         </div>
       </div>
-      <BarChart />
+      <BarChart barcode={item.barcode?.split(" ")[0]} />
     </div>
   );
 };

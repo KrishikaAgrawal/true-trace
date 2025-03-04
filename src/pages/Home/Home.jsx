@@ -40,7 +40,7 @@ const Home = () => {
                 <h2 className="text-poppins text-gray-800 text-xl font-semibold">
                   {item.name}
                 </h2>
-                <p className="text-gray-600 text-sm">Barcode: {item.barcode}</p>
+                {/* <p className="text-gray-600 text-sm">Barcode: {item.barcode}</p> */}
                 <div className="flex items-start gap-4">
                   <img
                     src={item.nutriScore}

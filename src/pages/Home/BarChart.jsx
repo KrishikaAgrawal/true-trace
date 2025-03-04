@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -18,7 +19,43 @@ ChartJS.register(
   Legend
 );
 
-const BarChart = () => {
+const BarChart = ({ barcode }) => {
+  const [nutrients, setNutrients] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNutrientData = async () => {
+      try {
+        const response = await fetch(
+          `https://world.openfoodfacts.org/api/v2/product/${barcode}.json`
+        );
+        const data = await response.json();
+
+        if (data.status === 1) {
+          const product = data.product.nutriments;
+
+          setNutrients({
+            energy: product["energy-kcal_100g"] || 0,
+            fat: product["fat_100g"] || 0,
+            saturatedFat: product["saturated-fat_100g"] || 0,
+            carbohydrates: product["carbohydrates_100g"] || 0,
+            protein: product["proteins_100g"] || 0,
+            sodium: product["sodium_100g"] ? product["sodium_100g"] * 1000 : 0, // Convert g to mg
+          });
+        } else {
+          console.error("Product not found");
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      }
+      setLoading(false);
+    };
+
+    fetchNutrientData();
+  }, [barcode]);
+
+  if (loading) return <p>Loading chart...</p>;
+
   const data = {
     labels: [
       "Energy (kcal)",
@@ -31,7 +68,14 @@ const BarChart = () => {
     datasets: [
       {
         label: "Per 100g",
-        data: [549, 33, 4.4, 57, 5, 440],
+        data: [
+          nutrients.energy,
+          nutrients.fat,
+          nutrients.saturatedFat,
+          nutrients.carbohydrates,
+          nutrients.protein,
+          nutrients.sodium,
+        ],
         backgroundColor: [
           "rgba(255, 99, 132, 0.5)",
           "rgba(54, 162, 235, 0.5)",
