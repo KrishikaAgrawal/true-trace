@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 import BarChart from "./BarChart.jsx";
+import DoughnutChart from "./DoughnutChart.jsx";
+import GaugeChart from "./GaugeChart.jsx";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -84,6 +86,8 @@ const CardDescription = () => {
         </div>
       </div>
       <BarChart barcode={item.barcode?.split(" ")[0]} />
+      <DoughnutChart barcode={item.barcode?.split(" ")[0]} />
+      <GaugeChart barcode={item.barcode?.split(" ")[0]} />
     </div>
   );
 };
