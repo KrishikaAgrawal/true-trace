@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+ import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { BiBell, BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
@@ -36,7 +36,7 @@ const Header = () => {
             placeholder="Search by name or barcode"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="focus:outline-none w-full font-semibold bg-[#FCFCFC] text-xs md:text-normal pr-8"
+            className="focus:outline-none w-full font-semibold bg-[#FCFCFC] text-xs md:text-[16px] pr-8"
           />
           {/* Barcode Scanner Icon */}
           <button
