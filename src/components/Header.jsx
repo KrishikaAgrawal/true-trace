@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-xl">
       {/* logo */}
-      <div className="flex justify-between items-center w-full bg-white py-3 px-8">
+      <div className="flex justify-between items-center w-full bg-white py-3 md:px-8 px-5">
         <NavLink to="/">
           <div className="flex items-center gap-2 cursor-pointer">
             <p className="text-xl lg:text-3xl font-bold text-[#003d29]">
@@ -26,7 +26,7 @@ const Header = () => {
         </NavLink>
 
         {/* Search Bar */}
-        <div className="flex items-center p-3 py-2 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl w-1/2 relative">
+        <div className="flex items-center p-3 py-2 border border-[#EFEEEE] bg-[#FCFCFC] rounded-2xl ml-2 md:ml-0 md:w-1/2 relative">
           <label htmlFor="search" className="flex items-center">
             <LuSearch className="lg:mr-4 mr-2 text-[#003d29]" />
           </label>
@@ -36,12 +36,12 @@ const Header = () => {
             placeholder="Search by name or barcode"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="focus:outline-none w-full font-semibold bg-[#FCFCFC]"
+            className="focus:outline-none w-full font-semibold bg-[#FCFCFC] text-xs md:text-normal pr-8"
           />
           {/* Barcode Scanner Icon */}
           <button
             onClick={() => setIsScanning(true)}
-            className="absolute right-4 text-[#003d29] hover:text-[#007B55] transition-all"
+            className="absolute right-4 text-[#003d29] hover:text-[#007B55] transition-all "
           >
             <AiOutlineBarcode size={22} />
           </button>
