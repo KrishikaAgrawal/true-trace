@@ -4,6 +4,7 @@ import DoughnutChart from "./DoughnutChart.jsx";
 import GaugeChart from "./GaugeChart.jsx";
 // import LineChart from "./LineChart.jsx";
 import AlertSection from "./AlertSection";
+import GoodNutrientSection from "./GoodNutrientSection.jsx";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -106,6 +107,11 @@ const CardDescription = () => {
         {item.barcode && (
           <div className="flex items-center justify-center">
             <AlertSection barcode={item.barcode?.split(" ")[0]} />
+          </div>
+        )}
+        {item.barcode && (
+          <div className="flex items-center justify-center">
+            <GoodNutrientSection barcode={item.barcode?.split(" ")[0]} />
           </div>
         )}
 
