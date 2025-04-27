@@ -3,6 +3,7 @@ import BarChart from "./BarChart.jsx";
 import DoughnutChart from "./DoughnutChart.jsx";
 import GaugeChart from "./GaugeChart.jsx";
 // import LineChart from "./LineChart.jsx";
+import AlertSection from "./AlertSection";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -98,6 +99,18 @@ const CardDescription = () => {
         </div>
       </div>
       {/* <LineChart barcode={item.barcode?.split(" ")[0]} /> */}
+      <div className="w-full p-5 lg:p-24 lg:pt-14">
+        {/* your existing header and product image sections */}
+
+        {/* 🆕 Alarming Content Section */}
+        {item.barcode && (
+          <div className="flex items-center justify-center">
+            <AlertSection barcode={item.barcode?.split(" ")[0]} />
+          </div>
+        )}
+
+        {/* your BarChart, DoughnutChart, GaugeChart, etc */}
+      </div>
     </div>
   );
 };
