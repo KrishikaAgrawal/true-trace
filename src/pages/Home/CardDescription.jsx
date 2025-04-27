@@ -24,8 +24,8 @@ const CardDescription = () => {
   };
 
   return (
-    <div className="w-full p-5 lg:p-24 lg:pt-14 ">
-      <div className="flex items-center flex-col mb-10 md:flex-row bg-[#e5fcf4] rounded-2xl">
+    <div className="w-full p-5 lg:p-24 lg:pt-14 bg-amber-50">
+      <div className="flex items-center flex-col mb-10 md:flex-row">
         {/* Image Section */}
         {item.img && (
           <div className="lg:p-10 p-5 flex overflow-hidden">
@@ -36,16 +36,54 @@ const CardDescription = () => {
             />
           </div>
         )}
-
-        {/* Details Section */}
-        <div className="gap-2 text-[14px] lg:p-10 p-5 md:text-[16px] font-poppins flex flex-col text-gray-800">
+        <div className="flex flex-col gap-5 ">
           {/* Full Name */}
           {item.fullName && (
             <h1 className="text-2xl mb-4 md:text-4xl font-libre font-extrabold text-[#003d29]">
               {item.fullName}
             </h1>
           )}
+          {/* <div className="w-full p-5 lg:p-12 lg:pt-14"> */}
+          {/* your existing header and product image sections */}
 
+          {/* Alarming Content Section */}
+          {item.barcode && (
+            <div className="flex items-center justify-center w-full">
+              <AlertSection barcode={item.barcode?.split(" ")[0]} />
+            </div>
+          )}
+          {item.barcode && (
+            <div className="flex items-center justify-center">
+              <GoodNutrientSection barcode={item.barcode?.split(" ")[0]} />
+            </div>
+          )}
+
+          {/* Nutrition & Nova Score */}
+          <div className="flex gap-5 items-center">
+            {item.nutriScore && (
+              <img src={item.nutriScore} alt="NutriScore" className="h-12" />
+            )}
+            {item.nova && (
+              <img src={item.nova} alt="Nova Score" className="h-12" />
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center bg-[#d6f8ec] rounded-2xl mb-10 p-5 h-[450px] md:p-20">
+        <BarChart barcode={item.barcode?.split(" ")[0]} />
+      </div>
+      <div className="grid md:grid-cols-2 items-center flex-col mb-10 gap-10 md:flex-row overflow-hidden">
+        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
+          <DoughnutChart barcode={item.barcode?.split(" ")[0]} />
+        </div>
+        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
+          <GaugeChart barcode={item.barcode?.split(" ")[0]} />
+        </div>
+      </div>
+      <div className="flex items-center flex-col mb-10 md:flex-row bg-[#e5fcf4] rounded-2xl">
+        {/* Details Section */}
+        <div className="gap-2 text-[14px] lg:p-10 p-5 md:text-[16px] font-poppins flex flex-col text-gray-800">
           {/* Conditionally Rendered Fields */}
           {renderField("Barcode", item.barcode)}
           {renderField("Common Name", item.commonName)}
@@ -87,35 +125,6 @@ const CardDescription = () => {
             )}
           </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center bg-[#d6f8ec] rounded-2xl mb-10 p-5 h-[450px] md:p-20">
-        <BarChart barcode={item.barcode?.split(" ")[0]} />
-      </div>
-      <div className="grid md:grid-cols-2 items-center flex-col mb-10 gap-10 md:flex-row overflow-hidden">
-        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
-          <DoughnutChart barcode={item.barcode?.split(" ")[0]} />
-        </div>
-        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
-          <GaugeChart barcode={item.barcode?.split(" ")[0]} />
-        </div>
-      </div>
-      {/* <LineChart barcode={item.barcode?.split(" ")[0]} /> */}
-      <div className="w-full p-5 lg:p-24 lg:pt-14">
-        {/* your existing header and product image sections */}
-
-        {/* 🆕 Alarming Content Section */}
-        {item.barcode && (
-          <div className="flex items-center justify-center">
-            <AlertSection barcode={item.barcode?.split(" ")[0]} />
-          </div>
-        )}
-        {item.barcode && (
-          <div className="flex items-center justify-center">
-            <GoodNutrientSection barcode={item.barcode?.split(" ")[0]} />
-          </div>
-        )}
-
-        {/* your BarChart, DoughnutChart, GaugeChart, etc */}
       </div>
     </div>
   );
