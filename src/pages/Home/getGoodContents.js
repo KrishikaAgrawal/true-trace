@@ -1,5 +1,6 @@
 // getGoodContents.js
 
+// Thresholds are based on per 100g values
 const thresholds = {
   proteins: 10, // grams
   fiber: 5, // grams
@@ -7,7 +8,7 @@ const thresholds = {
   fat: 3, // grams
   saturatedFat: 1.5, // grams
   sugars: 5, // grams
-  calories: 400, // kcal
+  caloriesPer100g: 120, // calories (not kcal), per 100g
   fruitsVegetablesNuts: 40, // percentage
   vitaminC: 15, // mg
   calcium: 100, // mg
@@ -22,7 +23,7 @@ const benefitMap = {
   fat: "good for heart health",
   saturatedFat: "helps manage cholesterol",
   sugars: "helps prevent diabetes and weight gain",
-  calories: "supports weight management",
+  caloriesPer100g: "supports weight management",
   fruitsVegetablesNuts: "boosts vitamins and minerals",
   vitaminC: "supports strong immunity",
   calcium: "strengthens bones and teeth",
@@ -60,9 +61,9 @@ const getGoodContents = (nutrients) => {
   if (nutrients.sugars && nutrients.sugars < thresholds.sugars) {
     goods.push(`🍬 Low Sugar (${nutrients.sugars}g) — ${benefitMap.sugars}.`);
   }
-  if (nutrients.energy && nutrients.energy < thresholds.calories) {
+  if (nutrients.energy && nutrients.energy < thresholds.caloriesPer100g) {
     goods.push(
-      `⚡ Low Calorie (${nutrients.energy}kcal) — ${benefitMap.calories}.`
+      `⚡ Low Calorie (${nutrients.energy} cal) — ${benefitMap.caloriesPer100g}.`
     );
   }
   if (

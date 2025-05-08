@@ -29,7 +29,7 @@ const fetchProductData = async (barcode, setData) => {
     if (data.status === 1) {
       const product = data.product.nutriments;
       setData({
-        energy: product["energy-kcal_100g"] || 0,
+        energy: product["energy-cal_100g"] || 0,
         fat: product["fat_100g"] || 0,
         saturatedFat: product["saturated-fat_100g"] || 0,
         carbohydrates: product["carbohydrates_100g"] || 0,

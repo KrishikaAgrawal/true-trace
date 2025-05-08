@@ -35,7 +35,7 @@ const BarChart = ({ barcode }) => {
           const product = data.product.nutriments;
 
           setNutrients({
-            energy: product["energy-kcal_100g"] || 0,
+            energy: product["energy-kcal_100g"] || 0, // Use kcal and interpret as Cal
             fat: product["fat_100g"] || 0,
             saturatedFat: product["saturated-fat_100g"] || 0,
             carbohydrates: product["carbohydrates_100g"] || 0,
@@ -58,7 +58,7 @@ const BarChart = ({ barcode }) => {
 
   const data = {
     labels: [
-      "Energy (kcal)",
+      "Energy (Cal)", // kcal shown as Cal (food calorie)
       "Total Fat (g)",
       "Saturated Fat (g)",
       "Carbohydrates (g)",
