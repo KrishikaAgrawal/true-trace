@@ -30,7 +30,7 @@ const getAlarmingContents = (nutrients) => {
 
   if (nutrients.sugars && nutrients.sugars > thresholds.sugarPer100g) {
     alerts.push(
-      `🍬 High Sugar: ${nutrients.sugars}g/100g (limit ${thresholds.sugarPer100g}g). Risk of ${diseaseMap.sugarPer100g}.`
+      `High Sugar: ${nutrients.sugars}g/100g (limit ${thresholds.sugarPer100g}g). Risk of ${diseaseMap.sugarPer100g}.`
     );
   }
 
@@ -39,19 +39,19 @@ const getAlarmingContents = (nutrients) => {
     nutrients.saturatedFat > thresholds.saturatedFatPer100g
   ) {
     alerts.push(
-      `🥓 High Saturated Fat: ${nutrients.saturatedFat}g/100g (limit ${thresholds.saturatedFatPer100g}g). Risk of ${diseaseMap.saturatedFatPer100g}.`
+      `High Saturated Fat: ${nutrients.saturatedFat}g/100g (limit ${thresholds.saturatedFatPer100g}g). Risk of ${diseaseMap.saturatedFatPer100g}.`
     );
   }
 
   if (nutrients.cholesterol && nutrients.cholesterol > thresholds.cholesterol) {
     alerts.push(
-      `🩺 High Cholesterol: ${nutrients.cholesterol}mg (limit ${thresholds.cholesterol}mg). Risk of ${diseaseMap.cholesterol}.`
+      `High Cholesterol: ${nutrients.cholesterol}mg (limit ${thresholds.cholesterol}mg). Risk of ${diseaseMap.cholesterol}.`
     );
   }
 
   if (nutrients.sodium && nutrients.sodium > thresholds.sodium) {
     alerts.push(
-      `🧂 High Sodium: ${nutrients.sodium}mg (limit ${thresholds.sodium}mg). Risk of ${diseaseMap.sodium}.`
+      `High Sodium: ${nutrients.sodium}mg (limit ${thresholds.sodium}mg). Risk of ${diseaseMap.sodium}.`
     );
   }
 
@@ -61,7 +61,7 @@ const getAlarmingContents = (nutrients) => {
 
     if (energyPer100g > thresholds.caloriesPer100g) {
       alerts.push(
-        `🔥 High Calories: ${energyPer100g.toFixed(1)} cal/100g (limit ${thresholds.caloriesPer100g} cal). Can cause ${diseaseMap.caloriesPer100g}.`
+        `High Calories: ${energyPer100g.toFixed(1)} cal/100g (limit ${thresholds.caloriesPer100g} cal). Can cause ${diseaseMap.caloriesPer100g}.`
       );
     }
   }
@@ -71,7 +71,7 @@ const getAlarmingContents = (nutrients) => {
     nutrients.fiber < thresholds.fiberPer100g
   ) {
     alerts.push(
-      `🌾 Low Fiber: ${nutrients.fiber}g/100g (minimum ${thresholds.fiberPer100g}g). Risk of ${diseaseMap.fiberPer100g}.`
+      `Low Fiber: ${nutrients.fiber}g/100g (minimum ${thresholds.fiberPer100g}g). Risk of ${diseaseMap.fiberPer100g}.`
     );
   }
 
@@ -80,13 +80,13 @@ const getAlarmingContents = (nutrients) => {
     nutrients["trans-fat"] > thresholds.transFatPer100g
   ) {
     alerts.push(
-      `🚫 High Trans Fat: ${nutrients["trans-fat"]}g/100g (limit ${thresholds.transFatPer100g}g). Major risk for ${diseaseMap.transFatPer100g}.`
+      `High Trans Fat: ${nutrients["trans-fat"]}g/100g (limit ${thresholds.transFatPer100g}g). Major risk for ${diseaseMap.transFatPer100g}.`
     );
   }
 
   if (nutrients.additives_n && nutrients.additives_n > thresholds.additives) {
     alerts.push(
-      `⚠️ Too Many Additives: ${nutrients.additives_n} (recommended < ${thresholds.additives}). Can lead to ${diseaseMap.additives}.`
+      `Too Many Additives: ${nutrients.additives_n} (recommended < ${thresholds.additives}). Can lead to ${diseaseMap.additives}.`
     );
   }
 

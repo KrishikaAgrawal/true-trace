@@ -5,6 +5,7 @@ import GaugeChart from "./GaugeChart.jsx";
 // import LineChart from "./LineChart.jsx";
 import AlertSection from "./AlertSection";
 import GoodNutrientSection from "./GoodNutrientSection.jsx";
+import HarmfulSection from "./HarmfulSection.jsx";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -69,7 +70,9 @@ const CardDescription = () => {
           </div>
         </div>
       </div>
-
+      <div>
+        <HarmfulSection barcode={item.barcode?.split(" ")[0]} />
+      </div>
       <div className="flex items-center justify-center bg-[#d6f8ec] rounded-2xl mb-10 p-5 h-[450px] md:p-20">
         <BarChart barcode={item.barcode?.split(" ")[0]} />
       </div>

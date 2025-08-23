@@ -38,32 +38,32 @@ const getGoodContents = (nutrients) => {
 
   if (nutrients.proteins && nutrients.proteins > thresholds.proteins) {
     goods.push(
-      `💪 High Protein (${nutrients.proteins}g) — ${benefitMap.proteins}.`
+      `High Protein (${nutrients.proteins}g) — ${benefitMap.proteins}.`
     );
   }
   if (nutrients.fiber && nutrients.fiber > thresholds.fiber) {
-    goods.push(`🌾 Good Fiber (${nutrients.fiber}g) — ${benefitMap.fiber}.`);
+    goods.push(`Good Fiber (${nutrients.fiber}g) — ${benefitMap.fiber}.`);
   }
   if (nutrients.salt && nutrients.salt < thresholds.salt) {
-    goods.push(`🧂 Low Salt (${nutrients.salt}g) — ${benefitMap.salt}.`);
+    goods.push(`Low Salt (${nutrients.salt}g) — ${benefitMap.salt}.`);
   }
   if (nutrients.fat && nutrients.fat < thresholds.fat) {
-    goods.push(`🥑 Low Fat (${nutrients.fat}g) — ${benefitMap.fat}.`);
+    goods.push(`Low Fat (${nutrients.fat}g) — ${benefitMap.fat}.`);
   }
   if (
     nutrients.saturatedFat &&
     nutrients.saturatedFat < thresholds.saturatedFat
   ) {
     goods.push(
-      `🧈 Low Saturated Fat (${nutrients.saturatedFat}g) — ${benefitMap.saturatedFat}.`
+      `Low Saturated Fat (${nutrients.saturatedFat}g) — ${benefitMap.saturatedFat}.`
     );
   }
   if (nutrients.sugars && nutrients.sugars < thresholds.sugars) {
-    goods.push(`🍬 Low Sugar (${nutrients.sugars}g) — ${benefitMap.sugars}.`);
+    goods.push(`Low Sugar (${nutrients.sugars}g) — ${benefitMap.sugars}.`);
   }
   if (nutrients.energy && nutrients.energy < thresholds.caloriesPer100g) {
     goods.push(
-      `⚡ Low Calorie (${nutrients.energy} cal) — ${benefitMap.caloriesPer100g}.`
+      `Low Calorie (${nutrients.energy} cal) — ${benefitMap.caloriesPer100g}.`
     );
   }
   if (
@@ -72,28 +72,28 @@ const getGoodContents = (nutrients) => {
       thresholds.fruitsVegetablesNuts
   ) {
     goods.push(
-      `🥦 Rich in Fruits & Veggies (${nutrients["fruits-vegetables-nuts-estimate"]}%) — ${benefitMap.fruitsVegetablesNuts}.`
+      `Rich in Fruits & Veggies (${nutrients["fruits-vegetables-nuts-estimate"]}%) — ${benefitMap.fruitsVegetablesNuts}.`
     );
   }
   if (nutrients["vitamin-c"] && nutrients["vitamin-c"] > thresholds.vitaminC) {
     goods.push(
-      `🍊 Good Vitamin C (${nutrients["vitamin-c"]}mg) — ${benefitMap.vitaminC}.`
+      `Good Vitamin C (${nutrients["vitamin-c"]}mg) — ${benefitMap.vitaminC}.`
     );
   }
   if (nutrients["calcium"] && nutrients["calcium"] > thresholds.calcium) {
     goods.push(
-      `🦴 Rich in Calcium (${nutrients["calcium"]}mg) — ${benefitMap.calcium}.`
+      `Rich in Calcium (${nutrients["calcium"]}mg) — ${benefitMap.calcium}.`
     );
   }
   if (nutrients["iron"] && nutrients["iron"] > thresholds.iron) {
-    goods.push(`🩸 Good Iron (${nutrients["iron"]}mg) — ${benefitMap.iron}.`);
+    goods.push(`Good Iron (${nutrients["iron"]}mg) — ${benefitMap.iron}.`);
   }
   if (
     nutrients["nova-group"] &&
     nutrients["nova-group"] <= thresholds.novaGroup
   ) {
     goods.push(
-      `🥗 Minimal Processing (NOVA Group ${nutrients["nova-group"]}) — ${benefitMap.novaGroup}.`
+      `Minimal Processing (NOVA Group ${nutrients["nova-group"]}) — ${benefitMap.novaGroup}.`
     );
   }
 
