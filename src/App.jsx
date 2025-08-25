@@ -6,12 +6,14 @@ import Home from "./pages/Home/Home";
 import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import CardDescription from "./pages/Home/CardDescription";
 import { SearchProvider } from "./context/SearchContext";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
       <SearchProvider>
         <BrowserRouter>
+          <ScrollToTop />
           <Header />
           <div className="pt-16">
             <Routes>
