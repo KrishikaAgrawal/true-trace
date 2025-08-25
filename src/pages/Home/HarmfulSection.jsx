@@ -1,10 +1,22 @@
 import { useEffect, useState } from "react";
 
+async function eNumberToName(e) {
+  const code = e.toLowerCase().replace(/\s+/g, "").replace(/^e/, "en:e"); 
+  const res = await fetch("https://static.openfoodfacts.org/data/taxonomies/additives.json");
+  const data = await res.json();
+  const node = data[code];
+  return (
+    node?.name?.en || 
+    node?.name?.[Object.keys(node?.name || {})[0]] || 
+    e // fallback: show original if no mapping
+  );
+}
+
 function HarmfulSection({ barcode }) {
   const [riskData, setRiskData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [selectedIngredient, setSelectedIngredient] = useState(null);
-  const [ingredientDetails, setIngredientDetails] = useState(null);
+  const [selected, setSelected] = useState({ category: null, ingredient: null });
+  const [ingredientDetails, setIngredientDetails] = useState("");
 
   // === Fetch harmful product data from OpenFoodFacts ===
   useEffect(() => {
@@ -37,16 +49,24 @@ function HarmfulSection({ barcode }) {
           if (ingredientsText.includes("maltodextrin"))
             unhealthy.push("Maltodextrin");
 
+          const additiveTags = product.additives_tags || [];
+          const additiveNames = await Promise.all(
+            additiveTags.map(async (a) => {
+              const eNumber = a.replace("en:", ""); // "en:e100" → "e100"
+              return await eNumberToName(eNumber);
+            })
+          );
+
           setRiskData({
             name: product.product_name || "Unknown Product",
             allergens:
               product.allergens_tags?.map((a) => a.replace("en:", "")) || [],
             unhealthy,
-            additives:
-              product.additives_tags?.map((a) => a.replace("en:", "")) || [],
+            additives: additiveNames, // ✅ now readable names
             packaging:
               product.packaging_tags?.map((p) => p.replace("en:", "")) || [],
           });
+
         } else {
           setRiskData(null);
         }
@@ -61,8 +81,18 @@ function HarmfulSection({ barcode }) {
   }, [barcode]);
 
   // === Fetch ingredient detail from Gemini ===
-  const fetchIngredientDetails = async (ingredient) => {
-    setSelectedIngredient(ingredient);
+  const fetchIngredientDetails = async (ingredient, category) => {
+    // Toggle: if already selected → close
+    if (
+      selected.category === category &&
+      selected.ingredient === ingredient
+    ) {
+      setSelected({ category: null, ingredient: null });
+      setIngredientDetails("");
+      return;
+    }
+
+    setSelected({ category, ingredient });
     setIngredientDetails("Loading...");
 
     try {
@@ -103,53 +133,48 @@ function HarmfulSection({ barcode }) {
   if (!riskData) return <p>No risk details found.</p>;
 
   // === Shared renderer for each category ===
-  const renderCategory = (title, items) => (
-    <div className="mb-4">
+  const renderCategory = (title, items, categoryKey) => (
+    <div className="mb-4 font-poppins">
       <h3 className="font-semibold mb-2">{title}:</h3>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 items-center">
         {items.length > 0 ? (
           items.map((item, idx) => (
-            <div key={idx} className="w-full">
-              <button
-                onClick={() =>
-                  selectedIngredient === item
-                    ? setSelectedIngredient(null) // close if clicked again
-                    : fetchIngredientDetails(item)
-                }
-                className={`px-3 py-1 border rounded-lg text-sm transition w-fit
-                  ${
-                    selectedIngredient === item
-                      ? "bg-blue-100 border-blue-400"
-                      : "hover:bg-gray-100"
-                  }`}
-              >
-                {item}
-              </button>
-
-              {/* Inline explanation box under the clicked ingredient */}
-              {selectedIngredient === item && (
-                <div className="mt-2 p-3 border rounded bg-gray-50">
-                  <h4 className="font-semibold">{item}</h4>
-                  <p className="mt-1">{ingredientDetails}</p>
-                </div>
-              )}
-            </div>
+            <button
+              key={idx}
+              onClick={() => fetchIngredientDetails(item, categoryKey)}
+              className={`px-3 py-1 border rounded-lg text-sm transition w-fit
+                ${
+                  selected.category === categoryKey &&
+                  selected.ingredient === item
+                    ? "bg-red-400 text-white border-red-700"
+                    : "bg-red-200 text-black hover:bg-red-400"
+                }`}
+            >
+              {item}
+            </button>
           ))
         ) : (
-          <p className="text-gray-500">None</p>
+          <p className="text-gray-500 italic">Not listed</p>
         )}
       </div>
+
+      {selected.category === categoryKey && selected.ingredient && (
+        <div className="mt-3 bg-[#fcf6d4] p-3 border rounded font-poppins text-[13px] border-amber-400  ">
+          <h4 className="font-semibold">{selected.ingredient}</h4>
+          <p className="mt-1 ">{ingredientDetails}</p>
+        </div>
+      )}
     </div>
   );
 
   return (
-    <div className="p-4 border rounded-lg space-y-6">
-      <h2 className="text-xl font-bold">Risk Ingredients</h2>
+    <div className="p-4 border border-amber-500 rounded-lg space-y-6 bg-amber-100 mb-16">
+      <h2 className="text-xl font-bold text-red-600">Risk Ingredients</h2>
 
-      {renderCategory("Allergens", riskData.allergens)}
-      {renderCategory("Unhealthy", riskData.unhealthy)}
-      {renderCategory("Additives", riskData.additives)}
-      {renderCategory("Packaging", riskData.packaging)}
+      {renderCategory("Allergens", riskData.allergens, "allergens")}
+      {renderCategory("Unhealthy", riskData.unhealthy, "unhealthy")}
+      {renderCategory("Additives", riskData.additives, "additives")}
+      {renderCategory("Packaging", riskData.packaging, "packaging")}
     </div>
   );
 }

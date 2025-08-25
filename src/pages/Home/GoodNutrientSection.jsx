@@ -22,7 +22,7 @@ const GoodNutrientSection = ({ barcode }) => {
   if (!goods || goods.length === 0) return null;
 
   return (
-    <div className="w-full bg-green-50 border border-green-300 p-6 rounded-2xl shadow-md">
+    <div className="w-full font-poppins bg-green-50 border border-green-300 p-6 rounded-2xl shadow-md">
       <h2 className="text-xl md:text-2xl font-bold mb-4 text-green-700 font-libre">
         ✅ Good Nutrient Levels
       </h2>

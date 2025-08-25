@@ -22,7 +22,7 @@ const AlertSection = ({ barcode }) => {
   if (!alerts || alerts.length === 0) return null;
 
   return (
-    <div className="w-full bg-red-50 border border-red-300 p-6  rounded-2xl shadow-md">
+    <div className="w-full font-poppins bg-red-50 border border-red-300 p-6  rounded-2xl shadow-md">
       <h2 className="text-xl md:text-2xl font-bold mb-4 text-red-700 font-libre">
         🚨 Alarming Nutrient Levels
       </h2>
