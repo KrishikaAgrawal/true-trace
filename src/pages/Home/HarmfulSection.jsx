@@ -81,53 +81,56 @@ function HarmfulSection({ barcode }) {
   }, [barcode]);
 
   // === Fetch ingredient detail from Gemini ===
-  const fetchIngredientDetails = async (ingredient, category) => {
-    // Toggle: if already selected → close
-    if (
-      selected.category === category &&
-      selected.ingredient === ingredient
-    ) {
-      setSelected({ category: null, ingredient: null });
-      setIngredientDetails("");
-      return;
-    }
+ const fetchIngredientDetails = async (ingredient, category) => {
+  // Toggle: if already selected → close
+  if (
+    selected.category === category &&
+    selected.ingredient === ingredient
+  ) {
+    setSelected({ category: null, ingredient: null });
+    setIngredientDetails("");
+    return;
+  }
 
-    setSelected({ category, ingredient });
-    setIngredientDetails("Loading...");
+  setSelected({ category, ingredient });
+  setIngredientDetails("Loading...");
 
-    try {
-      const response = await fetch(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-goog-api-key": "AIzaSyCppgoA0oNP6iu0Ioi6LczavsAt96yFECE",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `Explain in 2 lines and simple terms: What is ${ingredient}, why is it used in ${riskData.name}, and how can it be harmful to health?`,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
+  try {
+    const response = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": "AIzaSyAVJRb1FLntRFkwzfCQx3cKFBiwNd1qrvU",
+        },
+        body: JSON.stringify({
+          contents: [
+            {
+              parts: [
+                {
+                  text: `Explain in 2 lines and simple terms: What is ${ingredient}, why is it used in ${riskData.name}, and how can it be harmful to health?`,
+                },
+              ],
+            },
+          ],
+        }),
+      }
+    );
 
-      const data = await response.json();
-      const explanation =
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "No details available.";
-      setIngredientDetails(explanation);
-    } catch (error) {
-      console.error("Error fetching Gemini details:", error);
-      setIngredientDetails("Error loading details.");
-    }
-  };
+    const data = await response.json();
+    console.log("Gemini response:", data);
+
+    const explanation =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ||
+      "No details available.";
+    setIngredientDetails(explanation);
+  } catch (error) {
+    console.error("Error fetching Gemini details:", error);
+    setIngredientDetails("Error loading details.");
+  }
+};
+
 
   if (loading) return <p>Loading...</p>;
   if (!riskData) return <p>No risk details found.</p>;
@@ -168,8 +171,8 @@ function HarmfulSection({ barcode }) {
   );
 
   return (
-    <div className="p-4 border border-amber-500 rounded-lg space-y-6 bg-amber-100 mb-16">
-      <h2 className="text-xl font-bold text-red-600">Risk Ingredients</h2>
+    <div className="p-4  rounded-lg space-y-6 bg-amber-100 mb-16">
+      <h2 className="text-xl font-libre font-bold text-red-600">Risk Ingredients</h2>
 
       {renderCategory("Allergens", riskData.allergens, "allergens")}
       {renderCategory("Unhealthy", riskData.unhealthy, "unhealthy")}
