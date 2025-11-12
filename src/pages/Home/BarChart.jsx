@@ -98,14 +98,28 @@ const BarChart = ({ barcode }) => {
   };
 
   const options = {
-    responsive: true,
-    plugins: {
-      title: {
-        display: true,
-        text: "Nutrient Composition per 100g",
+  responsive: true,
+  plugins: {
+    legend: {
+      display: true,
+      labels: {
+        generateLabels: () => [
+          {
+            text: "Per 100g",
+            fillStyle: "rgba(211, 211, 211, 0.9)",
+            strokeStyle: "rgba(169, 169, 169, 1)",
+            lineWidth: 1,
+          },
+        ],
       },
     },
-  };
+    title: {
+      display: true,
+      text: "Nutrient Composition per 100g",
+    },
+  },
+};
+
 
   return <Bar data={data} options={options} />;
 };

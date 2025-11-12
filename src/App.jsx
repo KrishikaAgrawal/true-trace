@@ -7,6 +7,7 @@ import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import CardDescription from "./pages/Home/CardDescription";
 import { SearchProvider } from "./context/SearchContext";
 import ScrollToTop from "./components/ScrollToTop";
+import Login from "./pages/Login/Login.jsx";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />}></Route>
               <Route path="/Wishlist" element={<Wishlist />}></Route>
+              <Route path="/Login" element={<Login />}></Route>
               <Route
                 path="/CardDescription"
                 element={<CardDescription />}

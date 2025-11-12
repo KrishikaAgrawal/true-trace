@@ -1,12 +1,12 @@
  import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { BiBell, BiHeart } from "react-icons/bi";
+// import { BiBell, BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
-import { RiDiscountPercentFill } from "react-icons/ri";
+// import { RiDiscountPercentFill } from "react-icons/ri";
 import { AiOutlineBarcode } from "react-icons/ai"; // Barcode icon
 import { SearchContext } from "../context/SearchContext";
 
-import avatar from "../assets/header/avatar.png";
+// import avatar from "../assets/header/avatar.png";
 import BarcodeScanner from "./BarcodeScanner";
 
 const Header = () => {
@@ -67,7 +67,7 @@ const Header = () => {
 
         {/* User Icons */}
         <div className="gap-4 hidden lg:flex">
-          <NavLink to="/Wishlist">
+          {/* <NavLink to="/Wishlist">
             <div className="bg-[#c6fcea] text-[#003d29]  w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
               <BiHeart size={20} />
             </div>
@@ -79,9 +79,10 @@ const Header = () => {
           </NavLink>
           <div className="bg-[#c6fcea] text-[#003d29] w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
             <RiDiscountPercentFill size={20} />
-          </div>
+          </div> */}
 
-          {/* Profile */}
+
+          {/* Profile
           <div className="flex gap-4 items-center ml-4">
             <div className="w-9 h-9 rounded-full overflow-hidden">
               <img alt="profile" src={avatar} />
@@ -92,6 +93,14 @@ const Header = () => {
                 New Delhi, Delhi
               </p>
             </div>
+          </div> */}
+          {/* Login Button */}
+          <div className="flex gap-4 items-center ml-4">
+            <NavLink to="/Login">
+              <button className="bg-[#003d29] text-white px-4 py-2 rounded-full hover:bg-[#007B55] cursor-pointer active:scale-90 transition-all text-sm font-semibold">
+                Login
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
