@@ -71,14 +71,13 @@ const Header = () => {
         )}
 
         {/* Smart Suggestion */}
-        {/* <NavLink to="/suggestion"> */}
-          <button onClick={() => setShowModal(true)} className=" bg-emerald-100 text-emerald-800 px-2 py-2 hover:shadow-lg  rounded-lg cursor-pointer active:scale-90 transition-all text-sm font-semibold">
-            Smart Suggestion
-          </button>
-        {/* </NavLink> */}
+          
 
         {/* User Section */}
         <div className="flex items-center gap-4">
+          <button onClick={() => setShowModal(true)} className=" bg-emerald-100 text-emerald-800 px-2 py-2 hover:shadow-lg  rounded-lg cursor-pointer active:scale-90 transition-all text-sm font-semibold">
+            Smart Suggestion
+          </button>
           {user ? (
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full overflow-hidden border border-[#003d29]">
@@ -104,6 +103,7 @@ const Header = () => {
               </button>
             </NavLink>
           )}
+
         </div>
 
         {/* Smart Suggestion Modal */}
