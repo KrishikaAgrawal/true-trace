@@ -5,6 +5,7 @@ import Home from "./pages/Home/Home";
 // import Notification from "./pages/Notification/Notification.jsx";
 import Wishlist from "./pages/Wishlist/Wishlist.jsx";
 import CardDescription from "./pages/Home/CardDescription";
+import { AuthProvider } from "./context/AuthContext";
 import { SearchProvider } from "./context/SearchContext";
 import ScrollToTop from "./components/ScrollToTop";
 import Login from "./pages/Login/Login.jsx";
@@ -13,22 +14,24 @@ function App() {
   return (
     <>
       <SearchProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <Header />
-          <div className="pt-16">
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
-              <Route path="/Wishlist" element={<Wishlist />}></Route>
-              <Route path="/Login" element={<Login />}></Route>
-              <Route
-                path="/CardDescription"
-                element={<CardDescription />}
-              ></Route>
-              {/* <Route path="/Notification" element={<Notification />}></Route> */}
-            </Routes>
-          </div>
-        </BrowserRouter>
+        <AuthProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <Header />
+            <div className="pt-16">
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
+                <Route path="/Wishlist" element={<Wishlist />}></Route>
+                <Route path="/Login" element={<Login />}></Route>
+                <Route
+                  path="/CardDescription"
+                  element={<CardDescription />}
+                ></Route>
+                {/* <Route path="/Notification" element={<Notification />}></Route> */}
+              </Routes>
+            </div>
+          </BrowserRouter>
+        </AuthProvider>
       </SearchProvider>
     </>
   );

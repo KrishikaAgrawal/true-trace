@@ -1,22 +1,26 @@
- import { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-// import { BiBell, BiHeart } from "react-icons/bi";
 import { LuSearch } from "react-icons/lu";
-// import { RiDiscountPercentFill } from "react-icons/ri";
-import { AiOutlineBarcode } from "react-icons/ai"; // Barcode icon
+import { AiOutlineBarcode } from "react-icons/ai";
 import { SearchContext } from "../context/SearchContext";
-
-// import avatar from "../assets/header/avatar.png";
+import { useAuth } from "../context/AuthContext";
+import avatar from "../assets/header/avatar.png";
 import BarcodeScanner from "./BarcodeScanner";
+import SmartSuggestionModal from "./SmartSuggestionModal";
 
 const Header = () => {
   const { searchQuery, setSearchQuery } = useContext(SearchContext);
-  const [isScanning, setIsScanning] = useState(false); // Control scanner visibility
+  const [isScanning, setIsScanning] = useState(false);
 
+  // get user from context (auto re-renders when updated)
+  const { user } = useAuth();
+
+  // smart suggestion modal state
+  const [showModal, setShowModal] = useState(false);
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-xl">
-      {/* logo */}
       <div className="flex justify-between items-center w-full bg-white py-3 md:px-8 px-5">
+        {/* Logo */}
         <NavLink to="/">
           <div className="flex items-center gap-2 cursor-pointer">
             <p className="text-xl lg:text-3xl font-bold text-[#003d29]">
@@ -38,22 +42,23 @@ const Header = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="focus:outline-none w-full font-semibold bg-[#FCFCFC] text-xs md:text-[16px] pr-8"
           />
+
           {/* Barcode Scanner Icon */}
           <button
             onClick={() => setIsScanning(true)}
-            className="absolute right-4 text-[#003d29] hover:text-[#007B55] transition-all "
+            className="absolute right-4 text-[#003d29] hover:text-[#007B55] transition-all"
           >
             <AiOutlineBarcode size={22} />
           </button>
         </div>
 
-        {/* Barcode Scanner (Visible only when activated) */}
+        {/* Barcode Scanner */}
         {isScanning && (
           <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-white p-4 shadow-lg rounded-lg z-50">
             <BarcodeScanner
               onDetected={(code) => {
-                setSearchQuery(code); // Set detected barcode as search query
-                setIsScanning(false); // Close scanner after detection
+                setSearchQuery(code);
+                setIsScanning(false);
               }}
             />
             <button
@@ -65,44 +70,47 @@ const Header = () => {
           </div>
         )}
 
-        {/* User Icons */}
-        <div className="gap-4 hidden lg:flex">
-          {/* <NavLink to="/Wishlist">
-            <div className="bg-[#c6fcea] text-[#003d29]  w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
-              <BiHeart size={20} />
-            </div>
-          </NavLink>
-          <NavLink to="/Notification">
-            <div className="bg-[#c6fcea] text-[#003d29] w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
-              <BiBell size={20} />
-            </div>
-          </NavLink>
-          <div className="bg-[#c6fcea] text-[#003d29] w-9 h-9 flex justify-center items-center rounded-full hover:bg-[#003d29] hover:text-white cursor-pointer active:scale-90 transition-all">
-            <RiDiscountPercentFill size={20} />
-          </div> */}
+        {/* Smart Suggestion */}
+        {/* <NavLink to="/suggestion"> */}
+          <button onClick={() => setShowModal(true)} className=" bg-emerald-100 text-emerald-800 px-2 py-2 hover:shadow-lg  rounded-lg cursor-pointer active:scale-90 transition-all text-sm font-semibold">
+            Smart Suggestion
+          </button>
+        {/* </NavLink> */}
 
-
-          {/* Profile
-          <div className="flex gap-4 items-center ml-4">
-            <div className="w-9 h-9 rounded-full overflow-hidden">
-              <img alt="profile" src={avatar} />
+        {/* User Section */}
+        <div className="flex items-center gap-4">
+          {user ? (
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full overflow-hidden border border-[#003d29]">
+                <img
+                  alt="profile"
+                  src={avatar}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col text-left">
+                <p className="text-sm font-semibold text-nowrap">
+                  {user.username}
+                </p>
+                <p className="text-xs font-semibold text-[#A0A2A2] text-nowrap">
+                  {user.location || "Unknown"}
+                </p>
+              </div>
             </div>
-            <div className="hidden lg:flex flex-col">
-              <p className="text-sm font-semibold text-nowrap">User</p>
-              <p className="text-xs font-semibold text-[#A0A2A2] text-nowrap">
-                New Delhi, Delhi
-              </p>
-            </div>
-          </div> */}
-          {/* Login Button */}
-          <div className="flex gap-4 items-center ml-4">
-            <NavLink to="/Login">
+          ) : (
+            <NavLink to="/login">
               <button className="bg-[#003d29] text-white px-4 py-2 rounded-full hover:bg-[#007B55] cursor-pointer active:scale-90 transition-all text-sm font-semibold">
                 Login
               </button>
             </NavLink>
-          </div>
+          )}
         </div>
+
+        {/* Smart Suggestion Modal */}
+      <SmartSuggestionModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      />
       </div>
     </nav>
   );
