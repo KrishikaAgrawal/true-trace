@@ -73,14 +73,14 @@ const CardDescription = () => {
       <div>
         <HarmfulSection barcode={item.barcode?.split(" ")[0]} />
       </div>
-      <div className="flex items-center justify-center bg-[#d6f8ec] rounded-2xl mb-10 p-5 h-[450px] md:p-20">
+      <div className="flex items-center justify-center bg-emerald-100 rounded-2xl mb-10 p-5 h-[450px]">
         <BarChart barcode={item.barcode?.split(" ")[0]} />
       </div>
       <div className="grid md:grid-cols-2 items-center flex-col mb-10 gap-10 md:flex-row overflow-hidden">
-        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
+        <div className="items-center flex justify-center bg-emerald-100 rounded-2xl p-5 h-[450px]">
           <DoughnutChart barcode={item.barcode?.split(" ")[0]} />
         </div>
-        <div className="items-center flex justify-center bg-[#d6f8ec] rounded-2xl md:p-10 h-[450px]">
+        <div className="items-center flex justify-center bg-emerald-100 rounded-2xl p-5 h-[450px]">
           <GaugeChart barcode={item.barcode?.split(" ")[0]} />
         </div>
       </div>

@@ -70,14 +70,15 @@ const Header = () => {
           </div>
         )}
 
-        {/* Smart Suggestion */}
-          
-
-        {/* User Section */}
         <div className="flex items-center gap-4">
-          <button onClick={() => setShowModal(true)} className=" bg-emerald-100 text-emerald-800 px-2 py-2 hover:shadow-lg  rounded-lg cursor-pointer active:scale-90 transition-all text-sm font-semibold">
+          {/* Smart Suggestion */}
+          <button
+            onClick={() => setShowModal(true)}
+            className=" bg-emerald-100 text-emerald-800 px-2 py-2 hover:shadow-lg  rounded-lg cursor-pointer active:scale-90 transition-all text-sm font-semibold"
+          >
             Smart Suggestion
           </button>
+          {/* User Section */}
           {user ? (
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full overflow-hidden border border-[#003d29]">
@@ -98,19 +99,18 @@ const Header = () => {
             </div>
           ) : (
             <NavLink to="/login">
-              <button className="bg-[#003d29] text-white px-4 py-2 rounded-full hover:bg-[#007B55] cursor-pointer active:scale-90 transition-all text-sm font-semibold">
+              <button className="bg-[#003d29] text-gray-6  text-white px-4 py-2 rounded-full hover:bg-[#007B55] cursor-pointer active:scale-90 transition-all text-sm font-semibold">
                 Login
               </button>
             </NavLink>
           )}
-
         </div>
 
         {/* Smart Suggestion Modal */}
-      <SmartSuggestionModal
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-      />
+        <SmartSuggestionModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+        />
       </div>
     </nav>
   );

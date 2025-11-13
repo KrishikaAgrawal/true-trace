@@ -25,14 +25,26 @@ const DoughnutChart = ({ barcode }) => {
           {
             data: [
               data.energy + data.sugars + data.saturatedFat + data.sodium,
-              data.fiber + data.protein, // Fruits/Vegetables data is not available in API
+              data.fiber + data.protein,
             ],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.5)",
-              "rgba(75, 192, 192, 0.5)",
-            ],
+            backgroundColor: ["#F44336", "#4CAF50"],
+            borderWidth: 0, // no borders
           },
         ],
+      }}
+      options={{
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              color: "#333",
+              font: { size: 14 },
+            },
+          },
+          datalabels: {
+            display: false, // explicitly disables datalabels if the plugin is globally registered
+          },
+        },
       }}
     />
   );

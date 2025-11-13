@@ -11,7 +11,7 @@ const GaugeChart = ({ barcode }) => {
   useEffect(() => {
     fetchProductData(barcode, (data) => {
       const scoreMap = { a: 1, b: 2, c: 3, d: 4, e: 5 };
-      setNutriScore(scoreMap[data.nutriScore] || 0);
+      setNutriScore(scoreMap[data.nutriScore?.toLowerCase()] || 0);
     });
   }, [barcode]);
 
@@ -21,36 +21,39 @@ const GaugeChart = ({ barcode }) => {
     labels: ["A", "B", "C", "D", "E"],
     datasets: [
       {
-        data: [1, 1, 1, 1, 1], // Equal segments
+        data: [1, 1, 1, 1, 1], // equal segments
         backgroundColor: [
-          "#00E676",
-          "#FFEB3B",
-          "#FF9800",
-          "#F44336",
-          "#D32F2F",
+          "#00E676", // green
+          "#CDDC39", // lime
+          "#FFB300", // amber
+          "#FF7043", // orange-red
+          "#D32F2F", // red
         ],
-        borderWidth: 1,
-        cutout: "80%", // Makes it look like a gauge
+        borderWidth: 0, // no border
+        cutout: "80%",
       },
     ],
   };
 
   const gaugeOptions = {
-    circumference: 180, // Only show half of the doughnut (like a gauge)
-    rotation: 270, // Rotate to start at the bottom
+    circumference: 180, // half circle
+    rotation: 270, // start from bottom
     plugins: {
       legend: { display: false },
+      datalabels: { display: false }, // explicitly disable datalabels
     },
   };
 
+  const rotationMap = {
+    a: -90,
+    b: -45,
+    c: 0,
+    d: 45,
+    e: 90,
+  };
+
   const needleRotation =
-    {
-      a: -90,
-      b: -45,
-      c: 0,
-      d: 45,
-      e: 90,
-    }[String.fromCharCode(96 + nutriScore)] || 0;
+    rotationMap[String.fromCharCode(96 + nutriScore)] || 0;
 
   return (
     <div
@@ -62,6 +65,8 @@ const GaugeChart = ({ barcode }) => {
       }}
     >
       <Doughnut data={gaugeData} options={gaugeOptions} />
+
+      {/* Needle */}
       <div
         style={{
           position: "absolute",
@@ -69,11 +74,14 @@ const GaugeChart = ({ barcode }) => {
           left: "50%",
           transform: `translate(-50%, -50%) rotate(${needleRotation}deg)`,
           transformOrigin: "bottom center",
-          width: "2px",
-          height: "50px",
+          width: "3px",
+          height: "55px",
           backgroundColor: "black",
+          borderRadius: "2px",
         }}
       ></div>
+
+      {/* Label */}
       <p style={{ fontSize: "20px", fontWeight: "bold", marginTop: "10px" }}>
         Nutri-Score:{" "}
         {nutriScore ? String.fromCharCode(64 + nutriScore) : "Unknown"}

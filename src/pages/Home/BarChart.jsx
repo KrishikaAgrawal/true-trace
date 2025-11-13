@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 ChartJS.register(
   CategoryScale,
@@ -16,7 +17,8 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 const BarChart = ({ barcode }) => {
@@ -35,12 +37,12 @@ const BarChart = ({ barcode }) => {
           const product = data.product.nutriments;
 
           setNutrients({
-            energy: product["energy-kcal_100g"] || 0, // Use kcal and interpret as Cal
+            energy: product["energy-kcal_100g"] || 0,
             fat: product["fat_100g"] || 0,
             saturatedFat: product["saturated-fat_100g"] || 0,
             carbohydrates: product["carbohydrates_100g"] || 0,
             protein: product["proteins_100g"] || 0,
-            sodium: product["sodium_100g"] ? product["sodium_100g"] * 1000 : 0, // Convert g to mg
+            sodium: product["sodium_100g"] ? product["sodium_100g"] * 1000 : 0,
           });
         } else {
           console.error("Product not found");
@@ -58,7 +60,7 @@ const BarChart = ({ barcode }) => {
 
   const data = {
     labels: [
-      "Energy (Cal)", // kcal shown as Cal (food calorie)
+      "Energy (Cal)",
       "Total Fat (g)",
       "Saturated Fat (g)",
       "Carbohydrates (g)",
@@ -84,42 +86,69 @@ const BarChart = ({ barcode }) => {
           "rgba(153, 102, 255, 0.5)",
           "rgba(255, 159, 64, 0.5)",
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
         borderWidth: 1,
       },
     ],
   };
 
   const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: true,
-      labels: {
-        generateLabels: () => [
-          {
-            text: "Per 100g",
-            fillStyle: "rgba(211, 211, 211, 0.9)",
-            strokeStyle: "rgba(169, 169, 169, 1)",
-            lineWidth: 1,
-          },
-        ],
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          color: "#2d3748", // darker gray for legend text
+          font: { size: 13 },
+          generateLabels: () => [
+            {
+              text: "Per 100g",
+              fillStyle: "rgba(211, 211, 211, 0.9)",
+            },
+          ],
+        },
+      },
+      title: {
+        display: true,
+        text: "Nutrient Composition per 100g",
+        color: "#1a202c", // darker title color
+        font: {
+          size: 20, // increased title size
+          weight: "bold",
+        },
+      },
+      datalabels: {
+        anchor: "end",
+        align: "top",
+        offset: -4,
+        color: "#4a5568",
+        font: {
+          weight: "bold",
+          size: 12,
+        },
+        formatter: (value) => value.toFixed(1),
       },
     },
-    title: {
-      display: true,
-      text: "Nutrient Composition per 100g",
+    scales: {
+      x: {
+        ticks: {
+          color: "#2d3748", // darker color for x-axis labels
+          font: { size: 13 },
+        },
+        grid: {
+          color: "rgba(200, 200, 200, 0.2)",
+        },
+      },
+      y: {
+        ticks: {
+          color: "#2d3748", // darker color for y-axis labels
+          font: { size: 13 },
+        },
+        grid: {
+          color: "rgba(200, 200, 200, 0.2)",
+        },
+      },
     },
-  },
-};
-
+  };
 
   return <Bar data={data} options={options} />;
 };
