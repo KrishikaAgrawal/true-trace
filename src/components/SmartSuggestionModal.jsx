@@ -34,7 +34,7 @@ const SmartSuggestionModal = ({ isOpen, onClose }) => {
     const storedData = JSON.parse(localStorage.getItem("userData")) || {};
 
     // const { location, dob, gender, alergens, diseases } = storedData;
-    const { zdob, gender, alergens, diseases } = storedData;
+    const { dob, gender, alergens, diseases } = storedData;
     const age = dob
       ? new Date().getFullYear() - new Date(dob).getFullYear()
       : "";
