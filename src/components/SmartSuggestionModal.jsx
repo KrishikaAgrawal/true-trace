@@ -33,13 +33,14 @@ const SmartSuggestionModal = ({ isOpen, onClose }) => {
     // Retrieve user data from localStorage
     const storedData = JSON.parse(localStorage.getItem("userData")) || {};
 
-    const { location, dob, gender, alergens, diseases } = storedData;
+    // const { location, dob, gender, alergens, diseases } = storedData;
+    const { zdob, gender, alergens, diseases } = storedData;
     const age = dob
       ? new Date().getFullYear() - new Date(dob).getFullYear()
       : "";
 
     const prompt = `
-Give 3-5 names of healthy ${query} packaged products available in India. for a ${age}-year-old ${gender}, living in ${location}, India. 
+Give 3-5 names of healthy ${query} packaged products available in India. for a ${age}-year-old ${gender}, living in India. 
 Avoid products containing ${alergens || "none"} and consider health condition(s): ${diseases || "none"}.
 Each suggestion should single line explain very briefly why it fits well for their health profile. Provide the response in a numbered list format, no markdown, 1 line gap between each suggestion.
 `;
@@ -99,7 +100,6 @@ Each suggestion should single line explain very briefly why it fits well for the
         {/* Conditional content */}
         {user ? (
           <div className="space-y-3 text-sm text-gray-100">
-
             <div className="flex gap-2">
               <input
                 type="text"
@@ -131,7 +131,7 @@ Each suggestion should single line explain very briefly why it fits well for the
               className="font-semibold text-emerald-200 hover:underline"
               onClick={onClose}
             >
-              Login
+              Enter your details
             </NavLink>{" "}
             to view smart suggestions.
           </p>

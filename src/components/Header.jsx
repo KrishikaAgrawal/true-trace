@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import { LuSearch } from "react-icons/lu";
 import { AiOutlineBarcode } from "react-icons/ai";
 import { SearchContext } from "../context/SearchContext";
-import { useAuth } from "../context/AuthContext";
-import avatar from "../assets/header/avatar.png";
+// import { useAuth } from "../context/AuthContext";
+// import avatar from "../assets/header/avatar.png";
 import BarcodeScanner from "./BarcodeScanner";
 import SmartSuggestionModal from "./SmartSuggestionModal";
 
@@ -13,7 +13,7 @@ const Header = () => {
   const [isScanning, setIsScanning] = useState(false);
 
   // get user from context (auto re-renders when updated)
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   // smart suggestion modal state
   const [showModal, setShowModal] = useState(false);
@@ -79,7 +79,7 @@ const Header = () => {
             Smart Suggestion
           </button>
           {/* User Section */}
-          {user ? (
+          {/* {user ? (
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full overflow-hidden border border-[#003d29]">
                 <img
@@ -103,7 +103,7 @@ const Header = () => {
                 Login
               </button>
             </NavLink>
-          )}
+          )} */}
         </div>
 
         {/* Smart Suggestion Modal */}
