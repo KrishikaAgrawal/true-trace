@@ -6,6 +6,9 @@ import GaugeChart from "./GaugeChart.jsx";
 import AlertSection from "./AlertSection";
 import GoodNutrientSection from "./GoodNutrientSection.jsx";
 import HarmfulSection from "./HarmfulSection.jsx";
+import veg from "../../assets/Home/veg.jpg";
+import nonveg from "../../assets/Home/non-veg.jpg";
+// import unknown from "../../assets/Home/unknown.png";
 
 const CardDescription = () => {
   const location = useLocation();
@@ -23,6 +26,10 @@ const CardDescription = () => {
       </p>
     );
   };
+
+  const labelsString = Array.isArray(item.labels)
+    ? item.labels.join(" ").toLowerCase()
+    : (item.labels || "").toLowerCase();
 
   return (
     <div className="w-full p-5 lg:p-24 lg:pt-14 bg-amber-50">
@@ -66,6 +73,47 @@ const CardDescription = () => {
             )}
             {item.nova && (
               <img src={item.nova} alt="Nova Score" className="h-12" />
+            )}
+            {/* Veg / Non-Veg Detection */}
+            {labelsString && (
+              <>
+                {labelsString.includes("vegan") ||
+                labelsString.includes("vegetarian") ? (
+                  <div className="flex flex-col items-center">
+                    <span className="text-green-700 font-semibold text-[10px]">
+                      VEG
+                    </span>
+                    <img
+                      src={veg}
+                      className="h-7 w-7 pulseScale"
+                      alt="Veg"
+                    />
+                  </div>
+                ) : labelsString.includes("non-vegetarian") ||
+                  labelsString.includes("non vegetarian") ? (
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={nonveg}
+                      className="h-7 w-7 pulseScale"
+                      alt="Non-Veg"
+                    />
+                    <span className="text-red-700 font-semibold text-[10px]">
+                      Non-Veg
+                    </span>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center">
+                    <img
+                      src="/assets/icons/unknown.png"
+                      className="h-7 w-7 pulseScale"
+                      alt="Unknown"
+                    />
+                    <span className="text-yellow-700 font-semibold text-[10px]">
+                      Unknown
+                    </span>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
