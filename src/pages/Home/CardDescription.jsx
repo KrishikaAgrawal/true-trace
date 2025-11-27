@@ -51,8 +51,6 @@ const CardDescription = () => {
               {item.fullName}
             </h1>
           )}
-          {/* <div className="w-full p-5 lg:p-12 lg:pt-14"> */}
-          {/* your existing header and product image sections */}
 
           {/* Alarming Content Section */}
           {item.barcode && (
