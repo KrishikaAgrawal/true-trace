@@ -99,18 +99,7 @@ const CardDescription = () => {
                       Non-Veg
                     </span>
                   </div>
-                ) : (
-                  <div className="flex flex-col items-center">
-                    <img
-                      src="/assets/icons/unknown.png"
-                      className="h-7 w-7 pulseScale"
-                      alt="Unknown"
-                    />
-                    <span className="text-yellow-700 font-semibold text-[10px]">
-                      Unknown
-                    </span>
-                  </div>
-                )}
+                ) : null}
               </>
             )}
           </div>
